@@ -1,0 +1,6 @@
+[submodule "abstractive/OpenNMT"]
+	path = abstractive/OpenNMT
+	url = https://github.com/sebastianGehrmann/OpenNMT-py.git
+[submodule "unsupervised/UnsupervisedMT"]
+	path = unsupervised/UnsupervisedMT
+	url = https://github.com/facebookresearch/UnsupervisedMT.git
