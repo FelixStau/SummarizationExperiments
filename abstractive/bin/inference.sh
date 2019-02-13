@@ -1,7 +1,6 @@
-#!/bin/bash
 #SBATCH --job-name=inference
 #SBATCH --output=inference.log
-#SBATCH --cpus-per-task=1
+#SBATCH --cpus-per-task=2
 #SBATCH --mem=128G
 
 module load CUDA/9.1.85
@@ -10,6 +9,11 @@ module load Python/3.6.6-foss-2018b
 
 REPO_HOME="/home/staudfel/git/OpenNMT-py"
 DATA_HOME="/home/staudfel/data"
+
+export LC_ALL=en_US.UTF-8
+
+echo "NIVIDIA Driver Output"
+nvidia-smi
 
 echo "Starting venv"
 source ~/modules.sh
@@ -21,9 +25,8 @@ python ${REPO_HOME}/translate.py \
                     -beam_size 5 \
                     -model ${DATA_HOME}/results/abstractive_bottomup/model/pretrained_en_model.pt \
                     -src ${DATA_HOME}/cnndm/test.txt.src \
-                    -output ${REPO_HOME}\run\cnndm.out \
+                    -output ${REPO_HOME}/run/cnndm.out \
                     -min_length 35 \
-                    -verbose \
                     -stepwise_penalty \
                     -coverage_penalty summary \
                     -beta 5 \
